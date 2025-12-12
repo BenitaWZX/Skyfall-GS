@@ -49,25 +49,27 @@
     cd Skyfall-GS
     ```
 
-2.  **Create and activate a Conda environment:**
+2.  **Configured for google colab using A100:**
+
+
+3.  **Install dependencies (for google colab):**
 
     ```bash
-    conda create -y -n skyfall-gs python=3.10
-    conda activate skyfall-gs
-    ```
-
-3.  **Install dependencies:**
-
-    ```bash
-    conda install cuda-toolkit=12.8 cuda-nvcc=12.8 -c nvidia
 
     pip install -r requirements.txt
 
     pip install --force-reinstall torch torchvision torchaudio
 
+    # %cd /content/Skyfall-GS/
+    #  !git submodule sync
+    # !git submodule update --init --recursive
+
     pip install submodules/diff-gaussian-rasterization-depth
     pip install submodules/simple-knn
     pip install submodules/fused-ssim
+
+    pip install peft==0.17.1 # required for flow idu to work
+
     ```
 
 ## Dataset
