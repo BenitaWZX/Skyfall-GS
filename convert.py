@@ -95,6 +95,18 @@ for file in files:
     destination_file = os.path.join(args.source_path, "sparse", "0", file)
     shutil.move(source_file, destination_file)
 
+print("Converting COLMAP binary files to text format...")
+convert_cmd = (colmap_command + " model_converter \
+    --input_path " + args.source_path + "/sparse/0 \
+    --output_path " + args.source_path + "/sparse/0 \
+    --output_type TXT")
+exit_code = os.system(convert_cmd)
+if exit_code != 0:
+    logging.error(f"Model conversion failed with code {exit_code}. Exiting.")
+    exit(exit_code)
+
+print("COLMAP files converted to text format.")
+
 if(args.resize):
     print("Copying and resizing...")
 
